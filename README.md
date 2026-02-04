@@ -1,16 +1,354 @@
-# React + Vite
+# 🎮 難問ドラえもん三択クイズ
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React + Viteで作成されたインタラクティブなドラえもんクイズアプリケーションです。
 
-Currently, two official plugins are available:
+![Quiz App](https://img.shields.io/badge/React-18.x-blue.svg)
+![Vite](https://img.shields.io/badge/Vite-5.x-646CFF.svg)
+![License](https://img.shields.io/badge/license-MIT-green.svg)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📋 目次
 
-## React Compiler
+- [概要](#概要)
+- [機能](#機能)
+- [デモ](#デモ)
+- [技術スタック](#技術スタック)
+- [セットアップ](#セットアップ)
+- [使い方](#使い方)
+- [ファイル構成](#ファイル構成)
+- [カスタマイズ](#カスタマイズ)
+- [学習ポイント](#学習ポイント)
+- [ライセンス](#ライセンス)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 📖 概要
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+このアプリは、ドラえもんに関する10問の三択クイズに挑戦できるWebアプリケーションです。初級エンジニアがReactの基本を学ぶための教材としても最適です。
+
+### 主な特徴
+
+- ✨ シンプルで直感的なUI
+- 🔀 問題の順序が毎回ランダム
+- 🎯 正解/不正解の視覚的フィードバック
+- 🏆 スコアに応じたランク判定システム
+- 📱 レスポンシブデザイン
+
+---
+
+## 🎯 機能
+
+### クイズ機能
+
+- **問題数**: 全10問
+- **形式**: 三択問題
+- **シャッフル**: 問題順序がランダムに変わる
+- **即時フィードバック**: 選択後すぐに正解/不正解を表示
+- **スコア表示**: リアルタイムでスコアを確認可能
+
+### ランクシステム
+
+| 正答率 | ランク | 評価 |
+|--------|--------|------|
+| 100% | ドラえもん博士 | 完璧です！ |
+| 80%以上 | 出木杉君レベル | 素晴らしい！ |
+| 60%以上 | スネ夫レベル | なかなかやりますね！ |
+| 40%以上 | ジャイアンレベル | もう少し頑張りましょう！ |
+| 40%未満 | のび太レベル | ドラえもんに助けてもらいましょう！ |
+
+---
+
+## 🎬 デモ
+
+### クイズ画面
+```
+┌─────────────────────────────┐
+│ 難問ドラえもん三択クイズ    │
+├─────────────────────────────┤
+│ 第1問                        │
+│ しずかちゃんの父親の名前は？│
+│                              │
+│ □ 源義雄（みなもと よしお）│
+│ □ 源高志（みなもと たかし）│
+│ □ 源忠雄（みなもと ただお）│
+│                              │
+│ 現在のスコア: 0 / 10        │
+└─────────────────────────────┘
+```
+
+### 結果画面
+```
+┌─────────────────────────────┐
+│ クイズ終了！                │
+│                              │
+│ 正解数: 8 / 10              │
+│                              │
+│ あなたは 出木杉君レベル です│
+│ 素晴らしい！とても優秀です！│
+│                              │
+│ [ もう一度遊ぶ ]            │
+└─────────────────────────────┘
+```
+
+---
+
+## 🛠️ 技術スタック
+
+- **フレームワーク**: [React](https://react.dev/) 18.x
+- **ビルドツール**: [Vite](https://vitejs.dev/) 5.x
+- **言語**: JavaScript (JSX)
+- **スタイリング**: CSS3
+
+### 使用しているReact機能
+
+- `useState` - 状態管理
+- `useMemo` - メモ化による最適化
+- JSX - コンポーネント記述
+- イベントハンドリング
+
+---
+
+## 🚀 セットアップ
+
+### 必要要件
+
+- Node.js 18.x 以上
+- npm または yarn
+
+### インストール手順
+
+```bash
+# 1. リポジトリをクローン
+git clone https://github.com/yourusername/doraemon-quiz.git
+cd doraemon-quiz
+
+# 2. 依存関係をインストール
+npm install
+
+# 3. 開発サーバーを起動
+npm run dev
+
+# 4. ブラウザで開く
+# http://localhost:5173 にアクセス
+```
+
+### ビルド
+
+```bash
+# 本番用にビルド
+npm run build
+
+# ビルドしたファイルをプレビュー
+npm run preview
+```
+
+---
+
+## 📖 使い方
+
+### 基本的な遊び方
+
+1. **クイズ開始**: ページにアクセスすると自動的に1問目が表示されます
+2. **選択肢をクリック**: 正解だと思う選択肢をクリックします
+3. **結果確認**: 
+   - ✅ 正解の選択肢は緑色で表示
+   - ❌ 不正解の選択肢は赤色で表示
+4. **次の問題へ**: 「次へ」ボタンをクリックして次の問題に進みます
+5. **結果表示**: 全10問終了後、スコアとランクが表示されます
+6. **再挑戦**: 「もう一度遊ぶ」ボタンで最初からやり直せます
+
+---
+
+## 📁 ファイル構成
+
+```
+doraemon-quiz/
+├── public/
+│   └── vite.svg
+├── src/
+│   ├── App.jsx          # メインコンポーネント（クイズロジック）
+│   ├── main.jsx         # エントリーポイント
+│   ├── index.css        # スタイルシート
+│   └── App.css          # （未使用）
+├── index.html           # HTMLテンプレート
+├── package.json         # 依存関係の定義
+├── vite.config.js       # Vite設定
+└── README.md            # このファイル
+```
+
+### 主要ファイルの役割
+
+| ファイル | 役割 |
+|---------|------|
+| `index.html` | アプリの土台となるHTMLファイル |
+| `main.jsx` | Reactアプリケーションの起動 |
+| `App.jsx` | クイズのメインロジックとUI |
+| `index.css` | スタイル定義 |
+
+---
+
+## 🎨 カスタマイズ
+
+### 問題を追加・変更する
+
+`App.jsx`の`QUIZZES`配列を編集します：
+
+```javascript
+const QUIZZES = [
+  ["問題文", "選択肢1", "選択肢2", "選択肢3", 正解番号],
+  // 新しい問題を追加
+  ["新しい問題？", "選択肢A", "選択肢B", "選択肢C", 1],
+];
+```
+
+**注意**: 正解番号は1〜3の数字で指定します
+
+### 色を変更する
+
+`index.css`のカラー変数を編集します：
+
+```css
+:root {
+  --primary: #0066cc;  /* メインカラー（青） */
+  --accent: #ff6b6d;   /* アクセントカラー（赤） */
+}
+
+/* 正解時の色 */
+.correct { 
+  background: #e6ffed;  /* 背景色 */
+  color: #0a7a2b;       /* 文字色 */
+}
+
+/* 不正解時の色 */
+.wrong { 
+  background: #ffecec; 
+  color: #a80b0b; 
+}
+```
+
+### ランク基準を変更する
+
+`App.jsx`の`getRank`関数を編集します：
+
+```javascript
+function getRank(score, total) {
+  const percentage = (score / total) * 100;
+  
+  if (percentage === 100) 
+    return { title: "新しいランク", comment: "新しいコメント" };
+  // ...
+}
+```
+
+---
+
+## 📚 学習ポイント
+
+このアプリはReact初心者が以下の概念を学ぶのに最適です：
+
+### 1. useState（状態管理）
+
+```javascript
+const [index, setIndex] = useState(0);
+// 値が変わると自動で画面が更新される
+```
+
+### 2. useMemo（最適化）
+
+```javascript
+const shuffledQuizzes = useMemo(() => shuffleArray(QUIZZES), []);
+// 初回のみ実行して結果をメモ化
+```
+
+### 3. イベントハンドリング
+
+```javascript
+<button onClick={handleNext}>次へ</button>
+// クリック時に関数を実行
+```
+
+### 4. 条件付きレンダリング
+
+```javascript
+{finished ? <結果画面 /> : <問題画面 />}
+// 条件に応じて異なる画面を表示
+```
+
+### 5. リストレンダリング
+
+```javascript
+{choices.map((choice, i) => (
+  <li key={i}>{choice}</li>
+))}
+// 配列をループしてJSXを生成
+```
+
+---
+
+## 🔧 トラブルシューティング
+
+### よくある問題と解決方法
+
+#### 問題: 開発サーバーが起動しない
+
+```bash
+# 依存関係を再インストール
+rm -rf node_modules package-lock.json
+npm install
+```
+
+#### 問題: ページが真っ白
+
+- ブラウザのコンソールでエラーを確認
+- `npm run dev`でサーバーが起動しているか確認
+
+#### 問題: スタイルが反映されない
+
+- `index.css`が正しくインポートされているか確認
+- ブラウザのキャッシュをクリア（Ctrl + Shift + R）
+
+---
+
+## 🌟 今後の改善案
+
+- [ ] タイマー機能の追加
+- [ ] 問題のカテゴリー分け
+- [ ] ハイスコアの保存機能
+- [ ] アニメーション効果の追加
+- [ ] 音声効果の実装
+- [ ] 多言語対応
+- [ ] ダークモード対応
+
+---
+
+## 👥 コントリビューション
+
+プルリクエストを歓迎します！大きな変更の場合は、まずissueを開いて変更内容を議論してください。
+
+1. このリポジトリをフォーク
+2. フィーチャーブランチを作成 (`git checkout -b feature/amazing-feature`)
+3. 変更をコミット (`git commit -m 'Add some amazing feature'`)
+4. ブランチにプッシュ (`git push origin feature/amazing-feature`)
+5. プルリクエストを作成
+
+---
+
+## 📄 ライセンス
+
+このプロジェクトは MIT ライセンスの下で公開されています。
+
+---
+
+## 🙏 謝辞
+
+- ドラえもん © 藤子プロ・小学館・テレビ朝日・シンエイ・ADK
+- このアプリはファンメイドの非商用プロジェクトです
+
+---
+
+## 📞 サポート
+
+質問や問題がある場合は、[Issues](https://github.com/yourusername/doraemon-quiz/issues)で報告してください。
+
+---
+
+**Enjoy the quiz! 🎉**
